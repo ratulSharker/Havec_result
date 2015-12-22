@@ -3,25 +3,42 @@
 <html>
 	<head>
 		<script type="text/javascript" src='libs/t-test.js'></script>
-		
+
 		<script type="text/javascript">
 
 			function windowLoaded()
 			{
-				
+
+				function convertStringArrToFloatArr(values)
+				{
+					var arr = new Array();
+					for(var i=0; i < values.length; i++)
+					{
+						arr.push(parseFloat(values[i]));
+					}
+					return arr;
+				}
+
 				function calculateTClicked()
 				{
 					console.log('calculate t clicked');
-					
+
 					var firstInputArea = document.getElementById('first_data_set');
-					var secondInputArea= document.getElementById('second_data_set') 
+					var secondInputArea= document.getElementById('second_data_set')
 
-					var inputSet1 = firstInputArea.value;
-					var inputSet2 = secondInputArea.value;
+					var inputStr1 = firstInputArea.value;
+					var inputStr2 = secondInputArea.value;
 
-					console.log(inputSet1);
-					console.log(inputSet2);
+					var inputSet1 = convertStringArrToFloatArr(inputStr1.split(','));
+					var inputSet2 = convertStringArrToFloatArr(inputStr2.split(','));
+
+					var TValue = TTest.calculateTTestValue(inputSet1, inputSet2);
+
+					document.getElementById('output_para').innerHTML = "T-Test Value is  :: " + TValue;
 				}
+
+
+
 
 
 				console.log('window loaded');
@@ -37,7 +54,7 @@
 	</head>
 
 	<body>
-		
+
 		<div style='border:1px solid red;'>
 			<p>First set of data</p>
 			<textarea id='first_data_set'></textarea>
@@ -50,8 +67,9 @@
 		</div>
 
 		<div style='border:1px solid red;'>
-			<p>Calculate T-test</p>
+			<H3>Calculate T-test</H3>
 			<input type="button" value="calculate t" id='calculate_t_value'/>
+			<p id='output_para'></p>
 		</div>
 
 

@@ -2,16 +2,7 @@ var TTest = {
 
   calculateAVG:function(values)
 	{
-		var total = 0;
-		for(var i=0, len=values.length; i<len; i++)
-		{
-			total += values[i];
-		}
-
-		if(values.length > 0)
-			return total / values.length;
-		else
-			return 0;
+		return this.calculateAVGWithArbitraryLength(values, values.length);
 	},
 
   calculateAVGWithArbitraryLength:function(values, length)
