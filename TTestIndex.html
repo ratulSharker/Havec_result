@@ -1,0 +1,60 @@
+<!doctype HTML>
+
+<html>
+	<head>
+		<script type="text/javascript" src='libs/t-test.js'></script>
+		
+		<script type="text/javascript">
+
+			function windowLoaded()
+			{
+				
+				function calculateTClicked()
+				{
+					console.log('calculate t clicked');
+					
+					var firstInputArea = document.getElementById('first_data_set');
+					var secondInputArea= document.getElementById('second_data_set') 
+
+					var inputSet1 = firstInputArea.value;
+					var inputSet2 = secondInputArea.value;
+
+					console.log(inputSet1);
+					console.log(inputSet2);
+				}
+
+
+				console.log('window loaded');
+				var btnCalculateT = document.getElementById('calculate_t_value');
+				btnCalculateT.addEventListener('click', calculateTClicked);
+			}
+
+			window.addEventListener('load', windowLoaded);
+
+
+		</script>
+
+	</head>
+
+	<body>
+		
+		<div style='border:1px solid red;'>
+			<p>First set of data</p>
+			<textarea id='first_data_set'></textarea>
+		</div>
+
+
+		<div style='border:1px solid red;'>
+			<p>Second set of data</p>
+			<textarea id='second_data_set'></textarea>
+		</div>
+
+		<div style='border:1px solid red;'>
+			<p>Calculate T-test</p>
+			<input type="button" value="calculate t" id='calculate_t_value'/>
+		</div>
+
+
+
+	</body>
+</html>
