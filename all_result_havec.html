@@ -1,10 +1,11 @@
 <html>
 <head>
-	<style> table td{  padding: 10px; text-align: center; }  </style>
+	<!--<style> table td{  padding: 10px; text-align: center; }  </style> -->
 
 	<!-- table to json converter script -->
 	<script src='libs/jquery-1.11.3.min.js'> </script>
 	<script src='libs/jquery.tabletojson.min.js'> </script>
+	<script src='libs/underscore-min.js'></script>
 	<script src='libs/t-test.js'></script>
 
 	<script>
@@ -18,7 +19,7 @@
 			<td>\
 				<pre>Unit Structure type</pre>\
 			</td>\
-			<td><pre>ksize</pre></td>\
+			<td><pre>kSize</pre></td>\
 			<td><pre>index in hash table</pre></td>\
 			<td><pre># of hash function</pre></td>\
 			<td><pre>multiply-by</pre></td>\
@@ -38,6 +39,11 @@
 					   'data_table_8'];
 
 		var primaryJsonTable = getJsonOfTable(primaryTableName);
+
+		//sorting
+		primaryJsonTable = _.sortBy(primaryJsonTable, 'kSize');
+		primaryJsonTable = _.sortBy(primaryJsonTable, 'Filename');
+
 		var secondaryJsonTables = new Array();
 
 		//initialize secondary json tables in loop

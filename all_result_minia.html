@@ -3,6 +3,7 @@
   <head>
     <script src='libs/jquery-1.11.3.min.js'> </script>
   	<script src='libs/jquery.tabletojson.min.js'> </script>
+    <script src='libs/underscore-min.js'></script>
   	<script src='libs/t-test.js'></script>
 
     <script>
@@ -13,6 +14,12 @@
       var secondaryTableNames = ['data_table_2'];
 
       var primaryJsonTable = getJsonOfTable(primaryTableName);
+
+      //sorting
+      primaryJsonTable = _.sortBy(primaryJsonTable, 'k size');
+      primaryJsonTable = _.sortBy(primaryJsonTable, 'Filename');
+
+
       var secondaryJsonTables = new Array();
 
       //initialize secondary json tables in loop
