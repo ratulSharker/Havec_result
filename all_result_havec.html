@@ -27,6 +27,9 @@
 			<td><pre>runtime Standard Deviation</pre></td>\
 			<td><pre>Total Mem Avg (MB)</pre></td>\
 			<td><pre>Total Mem Standard Deviation</pre></td>\
+			<td><pre>solid khmer</pre></td>\
+           	<td><pre>solid in hashtable</pre></td>\
+           	<td><pre>solid in vct</pre></td>\
 		</tr>";
 	   // jQuery methods go here...
 		var primaryTableName = 'data_table_1';
@@ -120,6 +123,9 @@
 					resultString += '<td>' + sdTime.toFixed(4) + '</td>';
 					resultString += '<td>' + avgMem.toFixed(4) * 1024 + '</td>';
 					resultString += '<td>' + sdMem * 1024 + '</td>';
+					resultString += '<td>' + eachDataOnPrimaryTable['solid total'] + '</td>';
+					resultString += '<td>' + eachDataOnPrimaryTable['solid in mem'] + '</td>';
+					resultString += '<td>' + eachDataOnPrimaryTable['solid in vct'] + '</td>';
 					resultString += '</tr>';
 
 					if(meanMemoryString.length == 0)
@@ -151,8 +157,23 @@
 			var meanMemoryBlock = document.getElementById('mean_memory');
 			meanMemoryBlock.innerHTML = meanMemoryString;
 
+			//some string processing for latex
+			//resultString = resultString.replaceAll('<tr>', '');
+			//resultString = resultString.replaceAll('<td>', '');
+			//resultString = resultString.replaceAll('</td></tr>', '<br/>');
+			//resultString = resultString.replaceAll('</td>', ' & ');
+			//var latexTableRows = document.getElementById('table_in_latex');
+			//latexTableRows.innerHTML = resultString;
 
 		});
+
+		/*
+		String.prototype.replaceAll = function(search, replacement) {
+    		var target = this;
+    		return target.replace(new RegExp(search, 'g'), replacement);
+		};
+		*/
+
 
 
 		function getJsonOfTable(tableName)
@@ -225,6 +246,15 @@
 	</p>
 </div>
 
+<!--
+<div style='border:1px solid black;'>
+	resulted row in latex
+	<p id='table_in_latex' >
+
+	</p>
+</div>
+-->
+
 
 <div>
 	<table border='3' id='resultedTable'>
@@ -240,6 +270,9 @@
 			<td><pre>runtime Standard Deviation</pre></td>
 			<td><pre>Total Mem Avg (MB)</pre></td>
 			<td><pre>Total Mem Standard Deviation</pre></td>
+			<td><pre>solid khmer</pre></td>
+           	<td><pre>solid in hashtable</pre></td>
+           	<td><pre>solid in vct</pre></td>
 		</tr>
 	</table>
 </div>
@@ -250,7 +283,7 @@
 <p>Result Table 2 Nov 2015</p>
 
 <table border='2' id='data_table_1'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>5 byte</td><td>27</td><td>199165411</td><td>8</td><td>365</td><td>1.00728</td><td>0.0000 %</td><td>100.0000 %</td><td>1.5</td><td>131981455</td><td>795486</td><td>132776941</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>1</td><td>dataset_1_9GB.fa</td><td>5 byte</td><td>32</td><td>170662721</td><td>8</td><td>503</td><td>0.866245</td><td>0.0000 %</td><td>100.0000 %</td><td>1.5</td><td>113094644</td><td>680508</td><td>113775152</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>2</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr19.sorted.fasta</td><td>6 byte</td><td>27</td><td>292368229</td><td>8</td><td>628</td><td>1.80648</td><td>55.3563 %</td><td>44.6437 %</td><td>1.4</td><td>206796961</td><td>2037483</td><td>208834444</td><td>0.7073</td><td>0.7143</td><td>1.4000</td></tr>
@@ -453,7 +486,7 @@
 <p>Result Table 8 Nov 2015</p>
 
 <table border='2' id='data_table_2'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>5 byte</td><td>27</td><td>199165411</td><td>8</td><td>394</td><td>1.00728</td><td>92.0733 %</td><td>7.9269 %</td><td>1.5</td><td>131981455</td><td>795486</td><td>132776941</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>1</td><td>dataset_1_9GB.fa</td><td>5 byte</td><td>32</td><td>170662721</td><td>8</td><td>499</td><td>0.866249</td><td>91.7415 %</td><td>8.2585 %</td><td>1.5</td><td>113094644</td><td>680508</td><td>113775152</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>2</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr19.sorted.fasta</td><td>6 byte</td><td>27</td><td>292368229</td><td>8</td><td>659</td><td>1.80648</td><td>90.4372 %</td><td>9.5627 %</td><td>1.4</td><td>206796961</td><td>2037483</td><td>208834444</td><td>0.7073</td><td>0.7143</td><td>1.4000</td></tr>
@@ -657,7 +690,7 @@
 <p>Result Table 13 Nov 2015</p>
 
 <table border='2' id='data_table_3'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>5 byte</td><td>27</td><td>199165411</td><td>8</td><td>368</td><td>1.00728</td><td>92.0733 %</td><td>7.9269 %</td><td>1.5</td><td>131981455</td><td>795486</td><td>132776941</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>1</td><td>dataset_1_9GB.fa</td><td>5 byte</td><td>32</td><td>170662721</td><td>8</td><td>505</td><td>0.866249</td><td>91.7415 %</td><td>8.2585 %</td><td>1.5</td><td>113094644</td><td>680508</td><td>113775152</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>2</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr19.sorted.fasta</td><td>6 byte</td><td>27</td><td>292368229</td><td>8</td><td>617</td><td>1.80648</td><td>90.4372 %</td><td>9.5627 %</td><td>1.4</td><td>206796961</td><td>2037483</td><td>208834444</td><td>0.7073</td><td>0.7143</td><td>1.4000</td></tr>
@@ -862,7 +895,7 @@
 <p>Result Table 18 Nov 2015</p>
 
 <table border='2' id='data_table_4'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>5 byte</td><td>27</td><td>199165411</td><td>8</td><td>363</td><td>1.00728</td><td>92.0733 %</td><td>7.9269 %</td><td>1.5</td><td>131981455</td><td>795486</td><td>132776941</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>1</td><td>dataset_1_9GB.fa</td><td>5 byte</td><td>32</td><td>170662721</td><td>8</td><td>497</td><td>0.866249</td><td>91.7415 %</td><td>8.2585 %</td><td>1.5</td><td>113094644</td><td>680508</td><td>113775152</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>2</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr19.sorted.fasta</td><td>6 byte</td><td>27</td><td>292368229</td><td>8</td><td>618</td><td>1.80648</td><td>90.4372 %</td><td>9.5627 %</td><td>1.4</td><td>206796961</td><td>2037483</td><td>208834444</td><td>0.7073</td><td>0.7143</td><td>1.4000</td></tr>
@@ -1067,7 +1100,7 @@
 <p>Result Table 22 Nov 2015</p>
 
 <table border='2' id='data_table_5'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>5 byte</td><td>27</td><td>199165411</td><td>8</td><td>370</td><td>1.00728</td><td>92.0733 %</td><td>7.9269 %</td><td>1.5</td><td>131981455</td><td>795486</td><td>132776941</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>1</td><td>dataset_1_9GB.fa</td><td>5 byte</td><td>32</td><td>170662721</td><td>8</td><td>503</td><td>0.866249</td><td>91.7415 %</td><td>8.2585 %</td><td>1.5</td><td>113094644</td><td>680508</td><td>113775152</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>2</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr19.sorted.fasta</td><td>6 byte</td><td>27</td><td>292368229</td><td>8</td><td>623</td><td>1.80648</td><td>90.4372 %</td><td>9.5627 %</td><td>1.4</td><td>206796961</td><td>2037483</td><td>208834444</td><td>0.7073</td><td>0.7143</td><td>1.4000</td></tr>
@@ -1273,7 +1306,7 @@
 <p>Result Table 28 Nov 2015</p>
 
 <table border='2' id='data_table_6'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>5 byte</td><td>27</td><td>199165411</td><td>8</td><td>368</td><td>1.00728</td><td>92.0733 %</td><td>7.9269 %</td><td>1.5</td><td>131981455</td><td>795486</td><td>132776941</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>1</td><td>dataset_1_9GB.fa</td><td>5 byte</td><td>32</td><td>170662721</td><td>8</td><td>523</td><td>0.866249</td><td>91.7415 %</td><td>8.2585 %</td><td>1.5</td><td>113094644</td><td>680508</td><td>113775152</td><td>0.6627</td><td>0.6667</td><td>1.5000</td></tr>
 <tr><td>2</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr19.sorted.fasta</td><td>6 byte</td><td>27</td><td>292368229</td><td>8</td><td>622</td><td>1.80648</td><td>90.4372 %</td><td>9.5627 %</td><td>1.4</td><td>206796961</td><td>2037483</td><td>208834444</td><td>0.7073</td><td>0.7143</td><td>1.4000</td></tr>
@@ -1473,7 +1506,7 @@
 <p>Result Table 1 Dec 2015</p>
 
 <table border='2' id='data_table_7'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>50m.fa</td><td>5 byte</td><td>27</td><td>2846574551</td><td>8</td><td>2733</td><td>18.4644</td><td>71.7890 %</td><td>28.2110 %</td><td>1.2</td><td>2306591636</td><td>65553758</td><td>2372145394</td><td>0.8103</td><td>0.8333</td><td>1.2000</td></tr>
 <tr><td>1</td><td>50m.fa</td><td>5 byte</td><td>27</td><td>3083789017</td><td>8</td><td>2491</td><td>17.5263</td><td>81.9340 %</td><td>18.0659 %</td><td>1.3</td><td>2333763597</td><td>38381797</td><td>2372145394</td><td>0.7568</td><td>0.7692</td><td>1.3000</td></tr>
 <tr><td>2</td><td>50m.fa</td><td>5 byte</td><td>27</td><td>3202396321</td><td>8</td><td>2368</td><td>17.0817</td><td>87.2999 %</td><td>12.7001 %</td><td>1.35</td><td>2342533607</td><td>29611787</td><td>2372145394</td><td>0.7315</td><td>0.7407</td><td>1.3500</td></tr>
@@ -1673,7 +1706,7 @@
 <p>Result Table 5th Dec 2015</p>
 
 <table border='2' id='data_table_8'>
-<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem </pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
+<tr><td>~#~</td><td><pre>Filename</pre></td><td><pre>Structure Type</pre></td><td><pre>kSize</pre></td><td><pre>index in hash table</pre></td><td><pre># of hash function</pre></td><td><pre>run time (sec)</pre></td><td><pre>Total mem (GB)</pre></td><td><pre>Hash mem (% of total)<pre></td><td><pre>Vct mem (% of total)<pre></td><td><pre>multiply-by</pre></td><td><pre>solid in mem</pre></td><td><pre>solid in vct</pre></td><td><pre>solid total</pre></td><td><pre>khmer in mem / # of hash index</pre></td><td><pre>total khmer / # of hash index</pre></td><td> <pre># of hash index / total khmer</pre></td></tr>
 <tr><td>0</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>6 byte</td><td>32</td><td>200923843</td><td>8</td><td>377</td><td>1.22123</td><td>91.9360 %</td><td>8.0640 %</td><td>1.45</td><td>137518261</td><td>1049881</td><td>138568142</td><td>0.6844</td><td>0.6897</td><td>1.4500</td></tr>
 <tr><td>1</td><td>Human1_95G_CASAVA1.8a2_NCBI37_18Jan11_chr21.sorted.fasta</td><td>6 byte</td><td>27</td><td>179248873</td><td>8</td><td>398</td><td>1.14581</td><td>87.4168 %</td><td>12.5827 %</td><td>1.35</td><td>131115431</td><td>1661510</td><td>132776941</td><td>0.7315</td><td>0.7407</td><td>1.3500</td></tr>
 <tr><td>2</td><td>NA19240_GAIIx_100_chr21.fasta</td><td>5 byte</td><td>32</td><td>153596447</td><td>8</td><td>583</td><td>0.841286</td><td>85.0173 %</td><td>14.9827 %</td><td>1.35</td><td>112353240</td><td>1421904</td><td>113775144</td><td>0.7315</td><td>0.7407</td><td>1.3500</td></tr>
